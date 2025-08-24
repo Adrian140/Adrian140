@@ -102,10 +102,10 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-              Why Choose Prep Center France for Amazon FBA Prep
+              {t('whyChooseTitle')}
             </h2>
             <p className="text-lg sm:text-xl text-text-secondary">
-              Professional Amazon FBA prep services in France designed for European sellers
+              {t('whyChooseSubtitle')}
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
@@ -129,10 +129,10 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-              How It Works
+              {t('howItWorksTitle')}
             </h2>
             <p className="text-lg sm:text-xl text-text-secondary">
-              Simple 6-step process from arrival to Amazon FC
+              {t('howItWorksSubtitle')}
             </p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-6">
@@ -161,10 +161,10 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-              What Our Clients Say
+              {t('whatClientsTitle')}
             </h2>
             <p className="text-lg sm:text-xl text-text-secondary">
-              Trusted by global Amazon sellers
+              {t('whatClientsSubtitle')}
             </p>
           </div>
           <div className="max-w-4xl mx-auto">
@@ -206,10 +206,10 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4">
-              Trusted Shipping Partners
+              {t('trustedPartnersTitle')}
             </h2>
             <p className="text-sm sm:text-base text-text-secondary">
-              We work with leading carriers for reliable delivery
+              {t('trustedPartnersSubtitle')}
             </p>
           </div>
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-6 lg:gap-8 items-center justify-items-center">
@@ -228,10 +228,10 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-              Private Label & Multi-Platform Services
+              {t('privateLabelTitle')}
             </h2>
             <p className="text-lg sm:text-xl text-text-secondary">
-              Complete fulfillment solutions for your brand across all platforms
+              {t('privateLabelSubtitle')}
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
@@ -284,10 +284,10 @@ function Home() {
       <section className="py-16 lg:py-20 bg-primary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6">
-            Ready to Streamline Your Amazon FBA Operations in Europe?
+            {t('readyStreamlineTitle')}
           </h2>
           <p className="text-lg sm:text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Get started with professional Amazon FBA prep services in France. 24h turnaround times, quality control, FNSKU labeling and fast shipping to European Amazon fulfillment centers.
+            {t('readyStreamlineSubtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button className="w-full sm:w-auto bg-white text-primary px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl">

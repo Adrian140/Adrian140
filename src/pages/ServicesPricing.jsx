@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Package, CheckCircle, Calculator, Download, Gift, Truck, Star } from 'lucide-react';
+import { useTranslation } from '../translations';
 function ServicesPricing() {
   const [quantity, setQuantity] = useState(100);
   const [fbmOrders, setFbmOrders] = useState(50);
@@ -10,6 +11,7 @@ function ServicesPricing() {
    storage: false
   });
 
+  const { t } = useTranslation();
   const services = [
     {
       title: "Reception",
@@ -84,10 +86,10 @@ function ServicesPricing() {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
-            Amazon FBA Prep Services & Pricing - Prep Center France
+            {t('completeAmazonFBA')}
           </h1>
           <p className="text-xl text-text-secondary max-w-3xl mx-auto">
-            Complete Amazon FBA prep services in France with competitive pricing. Professional reception, quality control inspection, FNSKU labeling, polybagging & fast shipping to European Amazon fulfillment centers.
+            {t('professionalAmazonFBA')}
          </p>
         </div>
 
@@ -96,13 +98,13 @@ function ServicesPricing() {
           <div className="bg-gradient-to-r from-accent to-accent-dark rounded-xl p-6 text-center">
             <div className="flex items-center justify-center mb-4">
               <Gift className="w-8 h-8 text-white mr-3" />
-              <h2 className="text-2xl font-bold text-white">New Customer Bonus</h2>
+              <h2 className="text-2xl font-bold text-white">{t('newCustomerBonus')}</h2>
             </div>
             <p className="text-white text-lg mb-4">
-              First 2 months: €0.45/product (instead of €0.50) + Free setup consultation
+              {t('firstTwoMonths')}
             </p>
             <p className="text-orange-100 text-sm">
-              Plus: 100 FREE FNSKU labels when you exceed 1000 units in any calendar month
+              {t('freeFNSKU')}
             </p>
           </div>
         </section>
@@ -112,10 +114,10 @@ function ServicesPricing() {
           <div className="text-center mb-12">
             <Star className="w-12 h-12 text-primary mx-auto mb-4" />
             <h2 className="text-3xl font-bold text-text-primary mb-4">
-              Standard FBA Services
+              {t('standardFBATitle')}
             </h2>
             <p className="text-text-secondary">
-              Complete prep solution with everything included
+              {t('standardFBASubtitle')}
             </p>
           </div>
           
@@ -123,34 +125,34 @@ function ServicesPricing() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div>
                 <h3 className="text-2xl font-bold text-text-primary mb-4">
-                  FNSKU Labeling Service
+                  {t('fnSkuLabelingTitle')}
                 </h3>
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center">
                     <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-text-secondary">Reception & visual inspection</span>
+                    <span className="text-text-secondary">{t('receptionInspection')}</span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-text-secondary">Professional polybagging</span>
+                    <span className="text-text-secondary">{t('professionalPolybagging')}</span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-text-secondary">FNSKU labeling</span>
+                    <span className="text-text-secondary">{t('fnSkuLabeling')}</span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-text-secondary">Dunnage protection</span>
+                    <span className="text-text-secondary">{t('dunnageProtection')}</span>
                   </div>
                 </div>
               </div>
               <div className="text-center lg:text-right">
                 <div className="bg-gray-50 rounded-xl p-6">
-                  <p className="text-sm text-text-secondary mb-2">Standard Rate</p>
+                  <p className="text-sm text-text-secondary mb-2">{t('standardRate')}</p>
                   <p className="text-4xl font-bold text-primary mb-2">€0.50</p>
-                  <p className="text-text-secondary mb-4">per product</p>
+                  <p className="text-text-secondary mb-4">{t('perProduct')}</p>
                   <div className="bg-accent text-white px-4 py-2 rounded-lg inline-block">
-                    <p className="text-sm font-medium">New customers: €0.45</p>
+                    <p className="text-sm font-medium">{t('newCustomers')}</p>
                   </div>
                 </div>
               </div>
@@ -440,7 +442,7 @@ function ServicesPricing() {
               </div>
               <button className="bg-accent hover:bg-accent-dark text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300 ease-in-out flex items-center">
                 <Download className="w-5 h-5 mr-2" />
-                Request a Quote
+                <a href="/contact" className="text-white">Request a Quote</a>
               </button>
             </div>
           </div>

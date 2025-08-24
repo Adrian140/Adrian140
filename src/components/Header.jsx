@@ -2,21 +2,20 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Package } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
-import { useAuth } from '../contexts/AuthContext';
 import { useTranslation } from '../translations';
+import { useAdminAuth } from '../contexts/AdminAuthContext';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  const { user, logout } = useAuth();
   const { t } = useTranslation();
+  const { isAdminAuthenticated } = useAdminAuth();
 
   const navigation = [
     { name: t('home'), href: '/' },
     { name: t('services'), href: '/services-pricing' },
     { name: t('about'), href: '/about' },
-    { name: t('contact'), href: '/contact' },
-    { name: t('blog'), href: '/blog' }
+    { name: t('contact'), href: '/contact' }
   ];
   const isActive = (href) => location.pathname === href;
 
@@ -55,48 +54,24 @@ function Header() {
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-3">
             <LanguageSwitcher />
-            {user ? (
-              <div className="flex items-center space-x-3">
-                {user.role === 'admin' && (
-                  <Link
-                    to="/admin"
-                    className="px-3 py-2 text-sm font-medium text-accent hover:text-accent-dark transition-colors rounded-lg hover:bg-orange-50"
-                  >
-                    Admin
-                  </Link>
-                )}
-                <Link
-                  to="/dashboard"
-                  className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors rounded-lg hover:bg-gray-50"
-                >
-                   {t('dashboard')}
-               </Link>
-                <button
-                  onClick={logout}
-                  className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-red-600 transition-colors rounded-lg hover:bg-red-50"
-                >
-                   {t('logout')}
-               </button>
-              </div>
-            ) : (
-              <div className="flex items-center space-x-3">
-                <Link
-                  to="/login"
-                  className="px-4 py-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors rounded-lg hover:bg-gray-50"
-                >
-                   {t('login')}
-               </Link>
-                <Link
-                  to="/register"
-                  className="bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-primary-dark transition-all duration-200 shadow-sm hover:shadow-md"
-                >
-                   {t('register')}
-               </Link>
-              </div>
-            )}
             
             {/* Action Buttons */}
             <div className="flex items-center space-x-2 ml-4 pl-4 border-l border-gray-200">
+              {isAdminAuthenticated ? (
+                <a
+                  href="/admin-panel"
+                  className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition-all duration-200 shadow-sm hover:shadow-md text-sm"
+                >
+                  Admin Panel
+                </a>
+              ) : (
+                <a
+                  href="/admin-login"
+                  className="bg-gray-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-700 transition-all duration-200 shadow-sm hover:shadow-md text-sm"
+                >
+                  Admin
+                </a>
+              )}
               <a
                 href="https://wa.me/33675116218"
                 target="_blank"
@@ -105,39 +80,32 @@ function Header() {
               >
                  {t('chatWhatsApp')}
              </a>
-              <button className="bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-primary-dark transition-all duration-200 shadow-sm hover:shadow-md text-sm">
+              <a
+                href="/contact"
+                className="bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-primary-dark transition-all duration-200 shadow-sm hover:shadow-md text-sm"
+              >
                  {t('getQuote')}
-             </button>
+             </a>
             </div>
           </div>
 
           {/* Tablet Navigation (md screens) */}
           <div className="hidden md:flex lg:hidden items-center space-x-3">
             <LanguageSwitcher />
-            {user ? (
-              <>
-                {user.role === 'admin' && (
-                  <Link
-                    to="/admin"
-                    className="px-3 py-2 text-sm font-medium text-accent hover:text-accent-dark transition-colors rounded-lg hover:bg-orange-50"
-                  >
-                    Admin
-                  </Link>
-                )}
-              <Link
-                to="/dashboard"
-                className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors rounded-lg hover:bg-gray-50"
+            {isAdminAuthenticated ? (
+              <a
+                href="/admin-panel"
+                className="bg-red-600 text-white px-3 py-2 rounded-lg font-medium hover:bg-red-700 transition-colors text-sm"
               >
-                 {t('dashboard')}
-             </Link>
-              </>
+                Admin Panel
+              </a>
             ) : (
-              <Link
-                to="/login"
-                className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary transition-colors rounded-lg hover:bg-gray-50"
+              <a
+                href="/admin-login"
+                className="bg-gray-600 text-white px-3 py-2 rounded-lg font-medium hover:bg-gray-700 transition-colors text-sm"
               >
-                 {t('login')}
-             </Link>
+                Admin
+              </a>
             )}
             <a
               href="https://wa.me/33675116218"
@@ -147,9 +115,12 @@ function Header() {
             >
                {t('chatWhatsApp')}
            </a>
-            <button className="bg-primary text-white px-3 py-2 rounded-lg font-medium hover:bg-primary-dark transition-colors text-sm">
+            <a
+              href="/contact"
+              className="bg-primary text-white px-3 py-2 rounded-lg font-medium hover:bg-primary-dark transition-colors text-sm"
+            >
                {t('getQuote')}
-           </button>
+           </a>
           </div>
 
           {/* Mobile menu button */}
@@ -194,55 +165,24 @@ function Header() {
               
               {/* User Actions */}
               <div className="space-y-3">
-                {user ? (
-                  <div className="space-y-2">
-                    {user.role === 'admin' && (
-                      <Link
-                        to="/admin"
-                        className="block w-full text-center bg-orange-50 text-accent px-4 py-3 rounded-lg font-medium hover:bg-orange-100 transition-colors"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        Panou Admin
-                      </Link>
-                    )}
-                    <Link
-                      to="/dashboard"
-                      className="block w-full text-center bg-gray-100 text-text-primary px-4 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                       {t('dashboard')}
-                   </Link>
-                    <button
-                      onClick={() => {
-                        logout();
-                        setIsMenuOpen(false);
-                      }}
-                      className="block w-full text-center bg-red-50 text-red-600 px-4 py-3 rounded-lg font-medium hover:bg-red-100 transition-colors"
-                    >
-                       {t('logout')}
-                   </button>
-                  </div>
-                ) : (
-                  <div className="space-y-2">
-                    <Link
-                      to="/login"
-                      className="block w-full text-center bg-gray-100 text-text-primary px-4 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                       {t('login')}
-                   </Link>
-                    <Link
-                      to="/register"
-                      className="block w-full text-center bg-primary text-white px-4 py-3 rounded-lg font-medium hover:bg-primary-dark transition-colors"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                       {t('register')}
-                   </Link>
-                  </div>
-                )}
                 
                 {/* Action Buttons */}
                 <div className="pt-3 border-t border-gray-100 space-y-2">
+                  {isAdminAuthenticated ? (
+                    <a
+                      href="/admin-panel"
+                      className="block w-full bg-red-600 text-white px-4 py-3 rounded-lg font-medium text-center hover:bg-red-700 transition-colors"
+                    >
+                      Admin Panel
+                    </a>
+                  ) : (
+                    <a
+                      href="/admin-login"
+                      className="block w-full bg-gray-600 text-white px-4 py-3 rounded-lg font-medium text-center hover:bg-gray-700 transition-colors"
+                    >
+                      Admin
+                    </a>
+                  )}
                   <a
                     href="https://wa.me/33675116218"
                     target="_blank"
@@ -251,9 +191,12 @@ function Header() {
                   >
                      {t('chatWhatsApp')}
                  </a>
-                  <button className="block w-full bg-primary text-white px-4 py-3 rounded-lg font-medium hover:bg-primary-dark transition-colors">
+                  <a
+                    href="/contact"
+                    className="block w-full bg-primary text-white px-4 py-3 rounded-lg font-medium hover:bg-primary-dark transition-colors text-center"
+                  >
                      {t('getQuote')}
-                 </button>
+                 </a>
                 </div>
               </div>
             </div>

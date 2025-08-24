@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
-import { AuthProvider } from './contexts/AuthContext';
+import { AdminAuthProvider } from './contexts/AdminAuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import CookieBanner from './components/CookieBanner';
@@ -9,19 +9,15 @@ import Home from './pages/Home';
 import ServicesPricing from './pages/ServicesPricing';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Blog from './pages/Blog';
-import LoginForm from './components/auth/LoginForm';
-import RegisterForm from './components/auth/RegisterForm';
-import ForgotPasswordForm from './components/auth/ForgotPasswordForm';
-import Dashboard from './components/dashboard/Dashboard';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
-import AdminPanel from './components/admin/AdminPanel';
-
+import AdminLoginInfo from './components/AdminLoginInfo';
+import AdminLoginForm from './components/auth/AdminLoginForm';
+import SimpleAdminPanel from './components/admin/SimpleAdminPanel';
 function App() {
   return (
-    <AuthProvider>
     <LanguageProvider>
+    <AdminAuthProvider>
     <Router>
       <div className="min-h-screen bg-white">
         {/* SEO Meta Tags */}
@@ -92,19 +88,17 @@ function App() {
             <Route path="/services-pricing" element={<ServicesPricing />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/register" element={<RegisterForm />} />
-            <Route path="/forgot-password" element={<ForgotPasswordForm />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/admin" element={<AdminPanel />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsOfService />} />
+            <Route path="/register" />
+            <Route path="/admin-login" element={<AdminLoginForm />} />
+            <Route path="/admin-panel" element={<SimpleAdminPanel />} />
+            <Route path="/admin-info" element={<AdminLoginInfo />} />
           </Routes>
         </main>
         <Footer />
         <CookieBanner />
-
+        
         {/* Analytics placeholders */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
         <script>
@@ -117,8 +111,8 @@ function App() {
         </script>
       </div>
     </Router>
+    </AdminAuthProvider>
     </LanguageProvider>
-    </AuthProvider>
   );
 }
 

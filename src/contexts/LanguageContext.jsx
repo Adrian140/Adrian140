@@ -11,29 +11,12 @@ export const useLanguage = () => {
 };
 
 export const languages = {
+  fr: { name: 'Français', flag: '��🇷' },
   en: { name: 'English', flag: '🇬🇧' },
-  pt: { name: 'Português', flag: '🇵🇹' },
-  nl: { name: 'Nederlands', flag: '🇳🇱' },
-  pl: { name: 'Polski', flag: '🇵🇱' },
-  ro: { name: 'Română', flag: '🇷🇴' },
-  cs: { name: 'Čeština', flag: '🇨🇿' },
-  sk: { name: 'Slovenčina', flag: '🇸🇰' },
-  hu: { name: 'Magyar', flag: '🇭🇺' },
-  bg: { name: 'Български', flag: '🇧🇬' },
-  hr: { name: 'Hrvatski', flag: '🇭🇷' },
-  sl: { name: 'Slovenščina', flag: '🇸🇮' },
-  lt: { name: 'Lietuvių', flag: '🇱🇹' },
-  lv: { name: 'Latviešu', flag: '🇱🇻' },
-  et: { name: 'Eesti', flag: '🇪🇪' },
-  fi: { name: 'Suomi', flag: '🇫🇮' },
-  sv: { name: 'Svenska', flag: '🇸🇪' },
-  no: { name: 'Norsk', flag: '🇳🇴' },
-  fr: { name: 'Français', flag: '🇫🇷' },
   de: { name: 'Deutsch', flag: '🇩🇪' },
-  es: { name: 'Español', flag: '🇪🇸' },
   it: { name: 'Italiano', flag: '🇮🇹' },
-  da: { name: 'Dansk', flag: '🇩🇰' },
-  el: { name: 'Ελληνικά', flag: '🇬🇷' }
+  es: { name: 'Español', flag: '🇪🇸' },
+  ro: { name: 'Română', flag: '🇷🇴' }
 };
 
 export const LanguageProvider = ({ children }) => {

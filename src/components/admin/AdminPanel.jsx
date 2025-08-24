@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Settings, DollarSign, Package, FileText, Users, Plus, Edit, Trash2, Save, X, Upload, Eye } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { apiClient } from '../../config/api';
-
 function AdminPanel() {
   const [activeTab, setActiveTab] = useState('services');
   const [services, setServices] = useState([]);
